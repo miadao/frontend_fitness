@@ -31,6 +31,7 @@ const App =()=> {
 
 
     return <div className="app">
+        
         <Route>
             <div>
                 <Switch>
