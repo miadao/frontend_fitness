@@ -49,7 +49,9 @@ const App =()=> {
 
                     <Route exact path= "/login">
                         <Login
-                        
+                            loginSuccess={loginSuccess}
+                            setToken={setToken}
+                            token={token}
                         />
                     </Route>
 

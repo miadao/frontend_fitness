@@ -15,10 +15,10 @@ const Register = () => {
                 'Content-Type':'application/json'
             },
             body: JSON.stringify({
-                user:{
+                // user:{
                     "username": username,
                     "password": password,
-                }
+                // }
             })
         })
         console.log(`${BASE_URL}/users/register`)
@@ -76,7 +76,7 @@ const Register = () => {
                         onChange={(event) => setConfirmPassword(event.target.value)}
                     />
 
-                <br> </br>
+                {/* <br> </br> */}
                 <button
                     type="submit"
                     name="event"
