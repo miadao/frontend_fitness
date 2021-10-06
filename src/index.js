@@ -55,7 +55,12 @@ const App =()=> {
 
                     <Route exact path= "/register">
                         <Register
-                        
+                            username={username}
+                            password={password}
+                            ConfirmPassword={ConfirmPassword}
+                            setUsername={setUsername}
+                            setPassword={setPassword}
+                            setConfirmPassword={setConfirmPassword}
                         />
                     </Route>
 
