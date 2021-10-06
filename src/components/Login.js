@@ -1,7 +1,59 @@
+import React, {useState} from 'react'
 import { BASE_URL } from "../api";
 
-const Login = ({}) => {
+const Login = ({ setLoginSuccess, setToken }) => {
 
+    //STATE PAIRS GO HERE
+    const [usernameString, setUsernameString] = useState('')
+    const [passwordString, setPasswordString] = useState('')
+    function loginUser(username, password) {
+        fetch(`${BASE_URL}/users/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user: {
+                    username: username,
+                    password: password
+                }
+            })
+        }).then(response => response.json())
+            .then (result => {
+                console.log(result)
+                setLoginSuccess(true)
+                setToken(result.data.token)
+                localStorage.setItem('token', result.data.token)
+                return result
+            }).catch(console.error)
+    }
 
+    function logoutUser(){
+        setLoginSuccess(false)
+        setToken('')
+    }
+
+    return (
+    <>
+        <div className='Login'>
+            <h1>Login</h1>
+
+            <input className="usernameInput"
+                type="username"
+                value={usernameString}
+                onChange={ event => setUsernameString(event.target.value) }>
+            </input>
+
+            <input className="passwordInput"
+                type="password"
+                value={passwordString}
+                onChange={ event => setPasswordString(event.target.value) }>
+            </input>
+
+            <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)}>
+            Login</button>
+        </div>
+    </>
+    )
 }
 export default Login;

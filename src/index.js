@@ -31,14 +31,15 @@ const App =()=> {
 
 
     return <div className="app">
-        <Route>
+        
+        <Router>
             <div>
-                <Switch>
+                {/* <Switch>
                     <Route exact path= "/home">
                         <Home
                         
                         />
-                    </Route>
+                    </Route> */}
 
                     <Route exact path= "/activities">
                         <Activities
@@ -55,7 +56,12 @@ const App =()=> {
 
                     <Route exact path= "/register">
                         <Register
-                        
+                            username={username}
+                            password={password}
+                            ConfirmPassword={ConfirmPassword}
+                            setUsername={setUsername}
+                            setPassword={setPassword}
+                            setConfirmPassword={setConfirmPassword}
                         />
                     </Route>
 
@@ -76,11 +82,11 @@ const App =()=> {
                         <h1>404 Error - Page Not Found!</h1>
                     </Route>
                     
-                </Switch>
+                {/* </Switch> */}
             </div>
-        </Route>
+        </Router>
     </div>
 
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
