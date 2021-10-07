@@ -79,6 +79,8 @@ const App =()=> {
                         <Routines
                             routines={routines}
                             setRoutines={setRoutines}
+                            token={token}
+                            loginSuccess={loginSuccess}
                         />
                     </Route>
     
