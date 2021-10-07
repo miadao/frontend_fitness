@@ -10,7 +10,10 @@ Activities,
 Login,
 Register,
 Routines,
-Home
+Home,
+EditRoutines, 
+DeleteRoutines, 
+AddRoutines
 } from './components';
 
 import { BASE_URL } from './api';
@@ -76,6 +79,31 @@ const App =()=> {
                         <Routines
                             routines={routines}
                             setRoutines={setRoutines}
+                        />
+                    </Route>
+    
+                     </Route>
+
+                    <Route exact path= "/addroutines">
+                        <AddRoutines
+                            
+                        />
+                    </Route>
+    
+                    </Route>
+
+                    <Route exact path= "/deleteroutines">
+                        <DeleteRoutines
+                            
+                        />
+                    </Route>
+    
+    
+                     </Route>
+
+                    <Route exact path= "/editroutines">
+                        <EditRoutines
+                            
                         />
                     </Route>
 
