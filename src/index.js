@@ -9,7 +9,8 @@ import {
 Activities, 
 Login,
 Register,
-Routines
+Routines,
+Home
 } from './components';
 
 import { BASE_URL } from './api';
@@ -34,12 +35,12 @@ const App =()=> {
         
         <Router>
             <div>
-                {/* <Switch>
+                { <Switch>
                     <Route exact path= "/home">
                         <Home
                         
                         />
-                    </Route> */}
+                    </Route> 
 
                     <Route exact path= "/activities">
                         <Activities
@@ -82,7 +83,7 @@ const App =()=> {
                         <h1>404 Error - Page Not Found!</h1>
                     </Route>
                     
-                {/* </Switch> */}
+                 </Switch> }
             </div>
         </Router>
     </div>
