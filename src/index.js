@@ -35,12 +35,20 @@ const App =()=> {
         
         <Router>
             <div>
+<<<<<<< HEAD
                 { <Switch>
+=======
+                <Switch>
+>>>>>>> e889917439418cd23f9947e2a62c5ed1d59afe08
                     <Route exact path= "/home">
                         <Home
                         
                         />
+<<<<<<< HEAD
                     </Route> 
+=======
+                    </Route>
+>>>>>>> e889917439418cd23f9947e2a62c5ed1d59afe08
 
                     <Route exact path= "/activities">
                         <Activities
@@ -50,7 +58,9 @@ const App =()=> {
 
                     <Route exact path= "/login">
                         <Login
-                        
+                            loginSuccess={loginSuccess}
+                            setToken={setToken}
+                            token={token}
                         />
                     </Route>
 
@@ -83,7 +93,11 @@ const App =()=> {
                         <h1>404 Error - Page Not Found!</h1>
                     </Route>
                     
+<<<<<<< HEAD
                  </Switch> }
+=======
+                </Switch>
+>>>>>>> e889917439418cd23f9947e2a62c5ed1d59afe08
             </div>
         </Router>
     </div>
