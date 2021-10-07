@@ -30,10 +30,10 @@ const Register = () => {
     }
 
     const confirmPassword = () => {
-        if (password === ConfirmPassword) {
+        if (password === ConfirmPassword && password.length >= 8) {
             Register()
         } else {
-            alert ("Password does not meet the requirement, please try again")
+            alert ("Password must be 8 characters or longer. Please try again.")
         }
     }
 
@@ -86,7 +86,11 @@ const Register = () => {
                 </fieldset>
             </form>
         
-            <h1> <Link className="Log In" to="/login">Log In!</Link> </h1>
+            <h1> <Link className="Log In" to="/login">Log In!</Link> </h1> 
+            {/* h1 Link is for testing only so that we can re-direct ourselves without
+            creating new user each time
+             delete after we roll into production */}
+
         </div>
     )
 }

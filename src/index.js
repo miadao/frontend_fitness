@@ -10,7 +10,10 @@ Activities,
 Login,
 Register,
 Routines,
-Home
+Home,
+EditRoutines, 
+DeleteRoutines, 
+AddRoutines
 } from './components';
 
 import { BASE_URL } from './api';
@@ -22,6 +25,7 @@ const App =()=> {
     const [password, setPassword] = useState('');
     const [ConfirmPassword, setConfirmPassword] = useState(false);
     const [token, setToken] = useState('');
+    const [routines, setRoutines] = useState([])
 
     useEffect (() => {
         if (localStorage.getItem("token")){
@@ -59,6 +63,9 @@ const App =()=> {
                     <Route exact path= "/login">
                         <Login
                             loginSuccess={loginSuccess}
+                            setLoginSuccess={setLoginSuccess}
+                            username={username}
+                            setUsername={setUsername}
                             setToken={setToken}
                             token={token}
                         />
@@ -78,7 +85,35 @@ const App =()=> {
 
                     <Route exact path= "/routines">
                         <Routines
-                        
+                            routines={routines}
+                            setRoutines={setRoutines}
+                            token={token}
+                            loginSuccess={loginSuccess}
+                        />
+                    </Route>
+    
+                     </Route>
+
+                    <Route exact path= "/addroutines">
+                        <AddRoutines
+                            
+                        />
+                    </Route>
+    
+                    </Route>
+
+                    <Route exact path= "/deleteroutines">
+                        <DeleteRoutines
+                            
+                        />
+                    </Route>
+    
+    
+                     </Route>
+
+                    <Route exact path= "/editroutines">
+                        <EditRoutines
+                            
                         />
                     </Route>
 
