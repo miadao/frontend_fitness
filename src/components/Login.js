@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import { BASE_URL } from "../api";
 
 const Login = ({ setLoginSuccess, loginSuccess }) => {
@@ -58,6 +59,9 @@ const Login = ({ setLoginSuccess, loginSuccess }) => {
 
             <button className="logoutButton" onClick={() => logoutUser()}>
             Logout</button>
+
+            <h2> <Link className="Register" to="/register">Don't have an account? Sign Up!</Link></h2>
+
         </div>
 
         {loginSuccess ? <> Well Done! </> : <> Please Log In</>  }

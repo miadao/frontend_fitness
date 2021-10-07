@@ -1,6 +1,6 @@
 import { BASE_URL } from "../api";
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const Register = () => {
     const [username, setUsername] = useState('')
@@ -45,46 +45,49 @@ const Register = () => {
     }
 
     return (
-        <form onSubmit={(event) => {
-            event.preventDefault()
-            confirmPassword()
-        }}> 
-            <fieldset>
-                <label htmlFor="Username"> Create Username</label>
-                <input
-                    className="CreateUsername"
-                    id="Username"
-                    type="text"
-                    value={username}
-                    onChange={(event)=> setUsername(event.target.value)}
-                />
-                <label htmlFor="Password"> Create Password</label>
-                <input
-                    className="CreatePassword"
-                    id="Password"
-                    type="text"
-                    value={password}
-                    onChange={(event)=> setPassword(event.target.value)}
-                />
-
-                <label htmlFor="Confirm Password">Confirm Password</label>
+        <div> 
+            <form onSubmit={(event) => {
+                event.preventDefault()
+                confirmPassword()
+            }}> 
+                <fieldset>
+                    <label htmlFor="Username"> Create Username</label>
+                    <input
+                        className="CreateUsername"
+                        id="Username"
+                        type="text"
+                        value={username}
+                        onChange={(event)=> setUsername(event.target.value)}
+                    />
+                    <label htmlFor="Password"> Create Password</label>
                     <input
                         className="CreatePassword"
-                        id="confirmPassword"
+                        id="Password"
                         type="text"
-                        value={ConfirmPassword}
-                        onChange={(event) => setConfirmPassword(event.target.value)}
+                        value={password}
+                        onChange={(event)=> setPassword(event.target.value)}
                     />
 
-                {/* <br> </br> */}
-                <button
-                    type="submit"
-                    name="event"
-                >Register User</button>
+                    <label htmlFor="Confirm Password">Confirm Password</label>
+                        <input
+                            className="CreatePassword"
+                            id="confirmPassword"
+                            type="text"
+                            value={ConfirmPassword}
+                            onChange={(event) => setConfirmPassword(event.target.value)}
+                        />
 
-            </fieldset>
-        </form>
+                    {/* <br> </br> */}
+                    <button
+                        type="submit"
+                        name="event"
+                    >Register User</button>
+                    
+                </fieldset>
+            </form>
+        
+            <h1> <Link className="Log In" to="/login">Log In!</Link> </h1>
+        </div>
     )
-
 }
 export default Register;
