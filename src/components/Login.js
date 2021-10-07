@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { BASE_URL } from "../api";
 
-const Login = ({ setLoginSuccess, loginSuccess }) => {
+const Login = () => {
 
     //STATE PAIRS GO HERE
     const [usernameString, setUsernameString] = useState('')
     const [passwordString, setPasswordString] = useState('')
     const [userToken, setToken] = useState('')
+    const [loginSuccess, setLoginSuccess] = useState(false)
     function loginUser(username, password) {
         fetch(`${BASE_URL}/users/login`, {
             method: 'POST',
@@ -54,11 +55,11 @@ const Login = ({ setLoginSuccess, loginSuccess }) => {
                 onChange={ event => setPasswordString(event.target.value) }>
             </input>
 
-        {  loginSuccess ?  <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)}>
-            Login</button> : <></>}
+        {  loginSuccess ? <button className="logoutButton" onClick={() => logoutUser()}>
+            Logout</button> :  <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)}>
+            Login</button> }
 
-            <button className="logoutButton" onClick={() => logoutUser()}>
-            Logout</button>
+            
 
             <h2> <Link className="Register" to="/register">Don't have an account? Sign Up!</Link></h2>
 
