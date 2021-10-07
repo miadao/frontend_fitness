@@ -84,7 +84,6 @@ const App =()=> {
                         />
                     </Route>
     
-                     </Route>
 
                     <Route exact path= "/addroutines">
                         <AddRoutines
@@ -92,7 +91,7 @@ const App =()=> {
                         />
                     </Route>
     
-                    </Route>
+
 
                     <Route exact path= "/deleteroutines">
                         <DeleteRoutines
@@ -101,8 +100,6 @@ const App =()=> {
                     </Route>
     
     
-                     </Route>
-
                     <Route exact path= "/editroutines">
                         <EditRoutines
                             
