@@ -52,7 +52,10 @@ const Routines = ({ token, loginSuccess}) => {
                                 })}
                             </div>
                         <div className="routinegoal">Goal: {routine.goal}</div>
-
+                        {loginSuccess && routine.isPublic === false ? <EditRoutines routineId={routine.id} token={token}/> : null}
+                        {loginSuccess && routine.isPublic === false ? <DeleteRoutines routineId={routine.id} token={token}/> : null}
+                        {loginSuccess && routine.isPublic === false ? <AddRoutines routineId={routine.id} token={token}/> : null}
+                        
                     </div>
                 )
             })}
