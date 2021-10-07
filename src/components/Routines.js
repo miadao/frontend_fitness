@@ -42,8 +42,10 @@ const Routines = ({ token, loginSuccess}) => {
             {routines.map(routine => {
                 return (
                     <div className="routine" key={routine.id}>
+                        <div> ID: {routine.id}</div>
                         <div>Creator: {routine.creatorName}</div>
                         <div>Name: {routine.name}</div>
+                        <div>isPublic: {routine.isPublic ? "True" : "False"}</div>
                             <div>Activities:
                                 {routine.activities.map(activity => {
                                     return (<div key={activity.routineActivityId}>{activity.name}</div>)                                  
