@@ -23,15 +23,19 @@ const Login = ({username, setUsername, password, loginSuccess, setLoginSuccess})
         }).then(response => response.json())
             .then (result => {
                 console.log(result)
-                if(username && password)
-                {
-                setLoginSuccess(true)
-                setToken(result.token)
-                setUsername(result.user.username)
+                if(result.message==="you're logged in!"){
+                    console.log(result)
+                    setLoginSuccess(true)
+                    setToken(result.token)
+                    setUsername(result.user.username)
+                    localStorage.setItem('token', result.token)
+                    localStorage.setItem('username', result.user.username)
+                } else {
+                    console.log(result)
+                    alert('Incorrect Credentials, try again')
+                    setLoginSuccess(false)
                 }
                 
-                localStorage.setItem('token', result.token)
-                localStorage.setItem('username', result.user.username)
                 return result
             }).catch(console.error)
     }
