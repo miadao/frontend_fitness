@@ -36,10 +36,27 @@ li {
     margin: 2%;
     font-size: 15px;
 }
+
+/* ACTIVITY COMPONENT CLASSES */
+
 .activityDescription {
     padding-bottom: 10px;
 }
 
 .routinegoal{
     padding-bottom: 10px;
+}
+
+.routine{
+    padding-bottom: 10px;
+}
+
+.closebutton{
+    margin-bottom: 20px;
+}
+
+.activitycontainer{
+    display: flex;
+    flex-direction: row;
+    
 }
