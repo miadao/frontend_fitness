@@ -70,8 +70,18 @@ const Activities = () => {
             },
         }).then(response => response.json())
             .then(result => { 
-                setRoutinesToDisplay(result)
-                console.log(result)
+                if(result.length){
+                    setRequestedRoutines(true)
+                    console.log('success!', result)
+                    setRoutinesToDisplay(result)
+                } else {
+                    console.log('sorry, no activities', result)
+                    setRequestedRoutines(false)
+                    alert('Sorry, no routines for that activity!')
+                    
+                }
+                // setRoutinesToDisplay(result)
+                
             }).
             catch(console.error)
     }
@@ -113,7 +123,7 @@ const Activities = () => {
                                     <button className="seeroutines" disabled={requestedRoutines} onClick={(event) => { 
                                         event.preventDefault();
                                         getRoutinesByActivity(activity.id) 
-                                        setRequestedRoutines(true);
+                                        // setRequestedRoutines(true);
                                         
                                         console.log(activity.id)
                                         }}>See Routines!</button>
