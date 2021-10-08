@@ -26,14 +26,22 @@ const App =()=> {
     const [ConfirmPassword, setConfirmPassword] = useState(false);
     const [token, setToken] = useState('');
     const [routines, setRoutines] = useState([])
+    const [logoutUser, setLogoutUser] = useState(false)
+   
 
     useEffect (() => {
         if (localStorage.getItem("token")){
             setToken(localStorage.getItem("token"))
             setLoginSuccess(true)
         }
-    }, [loginSuccess])
+    }, [loginSuccess, token])
 
+    // useEffect (() => {
+    //     if (localStorage.clear("token")){
+    //         setToken(localStorage.clear("token"))
+    //         setLogoutUser(true)
+    //     }
+    // }, [logoutUser])
 
     return <div className="app">
         
@@ -49,7 +57,7 @@ const App =()=> {
 
                     <Route exact path= "/activities">
                         <Activities
-                        
+                            token={token}
                         />
                     </Route>
 
@@ -61,6 +69,8 @@ const App =()=> {
                             setUsername={setUsername}
                             setToken={setToken}
                             token={token}
+                            logoutUser={logoutUser}
+                            setLogoutUser={setLogoutUser}
                         />
                     </Route>
 
@@ -82,13 +92,15 @@ const App =()=> {
                             setRoutines={setRoutines}
                             token={token}
                             loginSuccess={loginSuccess}
+                            logoutUser={logoutUser}
+                            setLogoutUser={setLogoutUser}
                         />
                     </Route>
     
 
                     <Route exact path= "/addroutines">
                         <AddRoutines
-                            
+                            token={token}  
                         />
                     </Route>
     
