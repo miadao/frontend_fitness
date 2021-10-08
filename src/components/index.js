@@ -6,5 +6,12 @@ export { default as AddRoutines } from './AddRoutines';
 export { default as DeleteRoutines } from './DeleteRoutines';
 export { default as EditRoutines } from './EditRoutine';
 export { default as Home } from './Home';
+<<<<<<< HEAD
+=======
+export { default as EditRoutines } from './EditRoutine';
+export { default as MyRoutines } from './MyRoutines';
+export { default as Header } from './Header';
+
+>>>>>>> f823e35cbbd2d11ee2438c54b87c79fc4264afdd
 
 

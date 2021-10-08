@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 const Home = (props) => {
   const { BASE_URL, token, username } = props;
-  const [routines, setRoutines] = useState([]),
+  const [routines, setRoutines] = useState([]);
 
   useEffect(() => {
     fetch(`${BASE_URL}/Home`, {

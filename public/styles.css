@@ -1,3 +1,41 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.header {
+    background-color: blueviolet;
+    border: 2px solid;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    float: left;
+}
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+ul {
+    list-style: none;
+}
+li {
+    float: right;
+    margin: 30px;
+    font-size: 25px;;
+}
+
+.routines {
+    border: 1px solid;
+    margin: 2%;
+    font-size: 15px;
+}
 .activityDescription {
     padding-bottom: 10px;
 }

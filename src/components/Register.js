@@ -85,11 +85,6 @@ const Register = () => {
                     
                 </fieldset>
             </form>
-        
-            <h1> <Link className="Log In" to="/login">Log In!</Link> </h1> 
-            {/* h1 Link is for testing only so that we can re-direct ourselves without
-            creating new user each time
-             delete after we roll into production */}
 
         </div>
     )

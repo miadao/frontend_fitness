@@ -1,22 +1,15 @@
 import { BASE_URL } from "../api";
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import EditRoutines from "./EditRoutine";
+import DeleteRoutines from "./DeleteRoutines";
 
-const Routines = ({ token, loginSuccess, logoutUser, setLogoutUser}) => {
+const Routines = ({ username, token, loginSuccess}) => {
 
     
-    // const [filter, setFilter] = useState('')
+    const [filter, setFilter] = useState('')
     const [routines, setRoutines] = useState([])
-    // fetch (`${BASE_URL}/routines`, {
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    // }).then(response=> response.json())
-    // .then(routines => {
-    //     console.log(routines)
-    // setRoutines([routines])})
-    // .catch(console.error)
-
+    
     useEffect(() => {
         const fetchRoutines = async () => {
             const resp = await fetch(`${BASE_URL}/routines`)
@@ -27,44 +20,65 @@ const Routines = ({ token, loginSuccess, logoutUser, setLogoutUser}) => {
         fetchRoutines()
     }, [])
 
-    // const filterRoutines = (routine, text) => {
-    //     if (routine.title.toLowerCase().includes(text.toLowerCase())){
-    //       return true
-    //     }
-    //   }
+    const filterRoutines = (text) => {
+          return true
+      }
 
-    // const filteredRoutines = routines.filter (routine => filterRoutines(routine, filter))
-    // const routineToDisplay = filter.length > 0 ? filteredRoutines : routines; 
+    const filteredRoutines = routines.filter (routine => filterRoutines(routine, filter))
+    const routineToDisplay = filter.length > 0 ? filteredRoutines : routines; 
 
     
 
     return (
         <>
-            {loginSuccess ? <h1> <Link to="/addroutines" logoutUser={logoutUser} > <button> Add Routines </button> </Link></h1> : null}
+            {/* {loginSuccess ? 
+            <h1> <Link to="/addroutines" > <button> Add Routines </button> </Link> 
+            <br></br>
+            <Link to="/myroutines"> <button> My Routines </button> </Link>
+            <br></br>
+            <Link to="/login"> <button> Log Out </button></Link>
+            </h1>
+            : null} */}
 
-            <h2>Routines</h2>
+        
+
+            <h2> 
+                <input
+                    id="filter"
+                    type="text"
+                    placeholder="just do ctrl + f"
+                    value={filter}
+                    onChange={(event)=> setFilter(event.target.value)}
+                >
+                </input>
+                <button type="click" onclick={filterRoutines}> Filter Routines </button>
+            </h2>
+
+            <h3>Routines</h3>
             {routines.map(routine => {
-
+                
+                
                 
 
                 return (
-                    <div className="routine" key={routine.id}>
-                        <div> ID: {routine.id}</div>
-                        <div>Creator: {routine.creatorName}</div>
-                        <div>Name: {routine.name}</div>
-                        <div>isPublic: {routine.isPublic ? "True" : "False"}</div>
-                            <div>Activities:
-                                {routine.activities.map(activity => {
-                                    return (<div key={activity.routineActivityId}>{activity.name}</div>)                                  
-                                })}
-                            </div>
-                        <div className="routinegoal">Goal: {routine.goal}</div>
-
-                       
-
-                        {loginSuccess && routine.isPublic === false ? <EditRoutines routineId={routine.id} token={token}/> : null}
-                        {loginSuccess && routine.isPublic === false ? <DeleteRoutines routineId={routine.id} token={token}/> : null}
-                        {loginSuccess && routine.isPublic === false ? <AddRoutines routineId={routine.id} token={token}/> : null}
+                    
+                    <div className="routines" key={routine.id}>
+                        <h1> 
+                        ID: {routine.id}
+                        Creator: {routine.creatorName}
+                        Name: {routine.name}
+                        isPublic: {routine.isPublic ? "True" : "False"}
+                        Goal: {routine.goal}
+                            <ul> Activities:
+                                    {routine.activities.map(activity => {
+                                        return (<div key={activity.routineActivityId}>{activity.name}</div>)                                  
+                                    })}
+                            </ul>
+                        </h1>
+                        {loginSuccess && routine.creatorName === username ? <DeleteRoutines routineId={routine.id} token={token}/> : null}
+                        {loginSuccess && routine.creatorName === username ? <EditRoutines/> : null}
+                        
+                        
                         
                     </div>
                 )
