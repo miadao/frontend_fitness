@@ -41,6 +41,14 @@ li {
     display: flex;
     flex-direction: row;
 }
+.toViewAllRoutines, .toViewMyRoutines {
+    text-align: center;
+    font: red 30px;
+}
+
+button {
+    border: 3px solid burlywood;
+}
 
 /* ACTIVITY COMPONENT CLASSES */
 

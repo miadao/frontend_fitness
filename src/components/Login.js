@@ -23,11 +23,13 @@ const Login = ({username, setUsername, password, loginSuccess, setLoginSuccess})
         }).then(response => response.json())
             .then (result => {
                 console.log(result)
-                if(username && password)
+                if(username === usernameString && password === passwordString)
                 {
                 setLoginSuccess(true)
                 setToken(result.token)
                 setUsername(result.user.username)
+                } else {
+                    alert("Credentials Incorrect. Please re-enter and login.")
                 }
                 
                 localStorage.setItem('token', result.token)
@@ -60,12 +62,14 @@ const Login = ({username, setUsername, password, loginSuccess, setLoginSuccess})
                 onChange={ event => setPasswordString(event.target.value) }>
             </input>
 
-            {loginSuccess ? <button className="logoutButton" onClick={() => logoutUser()}>
-            Logout</button> :  <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)} >
-            Login </button> }
+            {loginSuccess ? <button className="logoutButton" onClick={() => logoutUser()}> Logout</button> 
+            :  <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)} > Login </button> }
+
+            
             
             {loginSuccess ? <Redirect to="/home"/> : null }
             {loginSuccess ? alert (`Welcome ${usernameString}!`) : null}
+            
             
 
             <h2> <Link className="Register" to="/register">Don't have an account? Sign Up!</Link></h2>
