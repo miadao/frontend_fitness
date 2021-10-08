@@ -63,10 +63,11 @@ const Routines = ({token, loginSuccess}) => {
             </h2>
 
             <h3 className="All Routines"> View All Routines below...</h3>
+            <br></br>
+            <h4 className="ToView"> {loginSuccess ? null : "Please Log In to Edit Routines"} </h4>
+            <h5 className="Add Routines"> {loginSuccess ? <Link to="/addroutines"> Add Routines </Link> : null} </h5>
 
-            <h4 className="Add Routines"> {loginSuccess ? <Link to="/addroutines"> Add Routines </Link> : null} </h4>
-
-
+            
 
             {routines.map(routine => {
                 
