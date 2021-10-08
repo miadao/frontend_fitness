@@ -58,10 +58,11 @@ const Login = ({username, password, loginSuccess, setLoginSuccess}) => {
                 onChange={ event => setPasswordString(event.target.value) }>
             </input>
 
-        {  loginSuccess ? <Redirect to="/routines"/> && <button className="logoutButton" onClick={() => logoutUser()}>
-            Logout</button> :  <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)}>
-            Login</button> }
-
+            {loginSuccess ? <button className="logoutButton" onClick={() => logoutUser()}>
+            Logout</button> :  <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)} >
+            Login </button> }
+            
+            {loginSuccess ? <Redirect to="/home"/> && alert (`Welcome back ${usernameString}!`) : null }
             
 
             <h2> <Link className="Register" to="/register">Don't have an account? Sign Up!</Link></h2>

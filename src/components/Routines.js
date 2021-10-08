@@ -2,7 +2,9 @@ import { BASE_URL } from "../api";
 import React, { useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-const Routines = ({ token, loginSuccess}) => {
+const Routines = ({ token, loginSuccess, logoutUser, setLogoutUser}) => {
+
+    
     // const [filter, setFilter] = useState('')
     const [routines, setRoutines] = useState([])
     // fetch (`${BASE_URL}/routines`, {
@@ -38,8 +40,13 @@ const Routines = ({ token, loginSuccess}) => {
 
     return (
         <>
-            <h1>Routines</h1>
+            {loginSuccess ? <h1> <Link to="/addroutines" logoutUser={logoutUser} > <button> Add Routines </button> </Link></h1> : null}
+
+            <h2>Routines</h2>
             {routines.map(routine => {
+
+                
+
                 return (
                     <div className="routine" key={routine.id}>
                         <div> ID: {routine.id}</div>
@@ -52,6 +59,9 @@ const Routines = ({ token, loginSuccess}) => {
                                 })}
                             </div>
                         <div className="routinegoal">Goal: {routine.goal}</div>
+
+                       
+
                         {loginSuccess && routine.isPublic === false ? <EditRoutines routineId={routine.id} token={token}/> : null}
                         {loginSuccess && routine.isPublic === false ? <DeleteRoutines routineId={routine.id} token={token}/> : null}
                         {loginSuccess && routine.isPublic === false ? <AddRoutines routineId={routine.id} token={token}/> : null}
