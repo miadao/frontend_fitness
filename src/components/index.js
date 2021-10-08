@@ -7,5 +7,7 @@ export { default as DeleteRoutines } from './DeleteRoutines';
 export { default as Home } from './Home';
 export { default as EditRoutines } from './EditRoutine';
 export { default as MyRoutines } from './MyRoutines';
+export { default as Header } from './Header';
+
 
 

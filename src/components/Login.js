@@ -30,6 +30,7 @@ const Login = ({username, password, loginSuccess, setLoginSuccess}) => {
                 }
                 
                 localStorage.setItem('token', result.token)
+                // localStorage.setItem('username', result.username)
                 return result
             }).catch(console.error)
     }

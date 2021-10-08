@@ -11,10 +11,9 @@ Login,
 Register,
 Routines,
 Home,
-EditRoutines, 
-DeleteRoutines, 
 AddRoutines,
-MyRoutines
+MyRoutines,
+Header
 } from './components';
 
 import { BASE_URL } from './api';
@@ -26,7 +25,7 @@ const App =()=> {
     const [password, setPassword] = useState('');
     const [ConfirmPassword, setConfirmPassword] = useState(false);
     const [token, setToken] = useState('');
-    const [routines, setRoutines] = useState([])
+    
     
    
 
@@ -35,7 +34,7 @@ const App =()=> {
             setToken(localStorage.getItem("token"))
             setLoginSuccess(true)
         }
-    }, [loginSuccess, token])
+    }, [loginSuccess])
 
     // useEffect (() => {
     //     if (localStorage.clear("token")){
@@ -48,6 +47,11 @@ const App =()=> {
         
         <Router>
             <div>
+                <Header 
+                    loginSuccess={loginSuccess}
+                    setLoginSuccess={setLoginSuccess}
+                />
+
                 <Switch>
                     <Route exact path= "/home">
                         <Home
@@ -89,9 +93,8 @@ const App =()=> {
                         <Routines
                             token={token}
                             loginSuccess={loginSuccess}
-                            setLoginSuccess={setLoginSuccess}
                             username={username}
-                            setUsername={setUsername}
+                            
                         />
                     </Route>
     

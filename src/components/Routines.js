@@ -31,14 +31,14 @@ const Routines = ({ username, token, loginSuccess}) => {
 
     return (
         <>
-            {loginSuccess ? 
+            {/* {loginSuccess ? 
             <h1> <Link to="/addroutines" > <button> Add Routines </button> </Link> 
             <br></br>
             <Link to="/myroutines"> <button> My Routines </button> </Link>
             <br></br>
             <Link to="/login"> <button> Log Out </button></Link>
             </h1>
-            : null}
+            : null} */}
 
         
 
@@ -62,17 +62,18 @@ const Routines = ({ username, token, loginSuccess}) => {
 
                 return (
                     
-                    <div className="routine" key={routine.id}>
+                    <div className="routines" key={routine.id}>
                         <h1> 
                         ID: {routine.id}
                         Creator: {routine.creatorName}
                         Name: {routine.name}
                         isPublic: {routine.isPublic ? "True" : "False"}
                         Goal: {routine.goal}
-                        Activities:
-                                {routine.activities.map(activity => {
-                                    return (<div key={activity.routineActivityId}>{activity.name}</div>)                                  
-                                })}
+                            <ul> Activities:
+                                    {routine.activities.map(activity => {
+                                        return (<div key={activity.routineActivityId}>{activity.name}</div>)                                  
+                                    })}
+                            </ul>
                         </h1>
                         {loginSuccess && routine.creatorName === username ? <DeleteRoutines routineId={routine.id} token={token}/> : null}
                         {loginSuccess && routine.creatorName === username ? <EditRoutines/> : null}
