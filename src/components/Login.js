@@ -62,7 +62,7 @@ const Login = ({username, password, loginSuccess, setLoginSuccess}) => {
             Logout</button> :  <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)} >
             Login </button> }
             
-            {loginSuccess ? <Redirect to="/home"/> && alert (`Welcome back ${usernameString}!`) : null }
+            {loginSuccess ? <Redirect to="/home"/> && alert (`Welcome ${usernameString}!`) : null }
             
 
             <h2> <Link className="Register" to="/register">Don't have an account? Sign Up!</Link></h2>

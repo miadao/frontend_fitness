@@ -13,7 +13,8 @@ Routines,
 Home,
 EditRoutines, 
 DeleteRoutines, 
-AddRoutines
+AddRoutines,
+MyRoutines
 } from './components';
 
 import { BASE_URL } from './api';
@@ -26,7 +27,7 @@ const App =()=> {
     const [ConfirmPassword, setConfirmPassword] = useState(false);
     const [token, setToken] = useState('');
     const [routines, setRoutines] = useState([])
-    const [logoutUser, setLogoutUser] = useState(false)
+    
    
 
     useEffect (() => {
@@ -68,8 +69,7 @@ const App =()=> {
                             setUsername={setUsername}
                             setToken={setToken}
                             token={token}
-                            logoutUser={logoutUser}
-                            setLogoutUser={setLogoutUser}
+                            
                         />
                     </Route>
 
@@ -87,12 +87,11 @@ const App =()=> {
 
                     <Route exact path= "/routines">
                         <Routines
-                            routines={routines}
-                            setRoutines={setRoutines}
                             token={token}
                             loginSuccess={loginSuccess}
-                            logoutUser={logoutUser}
-                            setLogoutUser={setLogoutUser}
+                            setLoginSuccess={setLoginSuccess}
+                            username={username}
+                            setUsername={setUsername}
                         />
                     </Route>
     
@@ -104,17 +103,9 @@ const App =()=> {
                     </Route>
     
 
-
-                    <Route exact path= "/deleteroutines">
-                        <DeleteRoutines
-                            
-                        />
-                    </Route>
-    
-    
-                    <Route exact path= "/editroutines">
-                        <EditRoutines
-                            
+                    <Route exact path= "/myroutines">
+                        <MyRoutines
+                            token={token}
                         />
                     </Route>
 
