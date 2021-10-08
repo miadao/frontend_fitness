@@ -39,18 +39,7 @@ const Routines = ({token, loginSuccess}) => {
 
     return (
         <>
-            {/* {loginSuccess ? 
-            <h1> <Link to="/addroutines" > <button> Add Routines </button> </Link> 
-            <br></br>
-            <Link to="/myroutines"> <button> My Routines </button> </Link>
-            <br></br>
-            <Link to="/login"> <button> Log Out </button></Link>
-            </h1>
-            : null} */}
-
-        
-
-            <h2> 
+            <h1> 
                 <input
                     id="filter"
                     type="text"
@@ -60,22 +49,17 @@ const Routines = ({token, loginSuccess}) => {
                 >
                 </input>
                 <button type="click" onclick={filterRoutines}> Filter Routines </button>
-            </h2>
+            </h1>
 
-            <h3 className="All Routines"> View All Routines below...</h3>
+            <h2 className="All Routines"> View All Routines below...</h2>
             <br></br>
-            <h4 className="ToView"> {loginSuccess ? null : "Please Log In to Edit Routines"} </h4>
-            <h5 className="Add Routines"> {loginSuccess ? <Link to="/addroutines"> Add Routines </Link> : null} </h5>
+            <h3 className="ToView"> {loginSuccess ? null : "Please Log In to Edit Routines"} </h3>
+            <h4 className="Add Routines"> {loginSuccess ? <Link to="/addroutines"> Add Routines </Link> : null} </h4>
 
             
 
             {routines.map(routine => {
-                
-                
-                
-
                 return (
-                        
                     <div className="routines" key={routine.id}>
                         <section> 
                             <h1> 

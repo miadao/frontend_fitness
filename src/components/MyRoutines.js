@@ -1,59 +1,61 @@
 import { BASE_URL } from "../api";
 import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import EditRoutines from "./EditRoutine";
 import DeleteRoutines from "./DeleteRoutines";
 
-const MyRoutines = ({token, loginSuccess}) => {
+const MyRoutines = ({token, loginSuccess, username}) => {
 
     const [myroutines, setMyRoutines] = useState([])
-    const [username, setUsername] = useState('')
     
-    useEffect(() => {
-        const fetchRoutines = async () => {
-            const resp = await fetch(`${BASE_URL}/routines`)
-            const data = await resp.json()
-            setMyRoutines(data)
-            console.log(data)
-            setUsername(localStorage.getItem("username"))
-            
-        }
-        fetchRoutines()
-        
-    }, [username])
+    
+            fetch(`${BASE_URL}/users/${username}/routines`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                  }
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                setMyRoutines(result)
+            })
+            .catch(console.error);
+                
 
-        
         
 
     return (
-        <>
-        {myroutines.map(routine =>  {
-            <div className="myroutines" key={routine.id}>
-                
-                <section> 
-                {loginSuccess && routine.creatorName === username ?
-                    <ul> 
-                        {routine.id}
-                        {routine.creatorName}
-                        {routine.name}
-                        {routine.isPublic ? "True" : "False"}
-                        {routine.goal}
-                        {routine.activities.map(activity => {
-                            return (<div key={activity.routineActivityId}>{activity.name}</div>)                                  
-                        })}
-                        { <DeleteRoutines routineId={routine.id} token={token}/>}
+        <> 
+            <h1 className="YourRoutines"> Your Routines</h1> 
+            <h2 className="ToView"> {loginSuccess ?  <Link to="/addroutines"> Add Routines </Link> : "Please Log In to Edit Your Routines"} </h2>
+            
+            
+           {myroutines && myroutines.map(routine => {
+                return (
+                    <div> 
+                    Routine Id: {routine.id}
+                    <br></br>
+                    Creator Name: {routine.creatorName}
+                    <br></br>
+                    Creator Id: {routine.creatorId}
+                    <br></br>
+                    Routine Name: {routine.name}
+                    <br></br>
+                    Is this Public?: {routine.isPublic ? "True" : "False"}
+                    <br></br>
+                    Goal: {routine.goal}
+                    <br></br>
+                    Activities: {routine.activities.map(activity => {
+                        return (<div key={activity.routineActivityId}>{activity.name}</div>)                                  
+                    })}
+                    { <DeleteRoutines routineId={routine.id} token={token}/>}
                     { <EditRoutines/>}
-
-                    </ul>
-                
-                    : null}
-            
-                </section>           
-            </div>
-            
-        })}
-        </>
+                </div>
+                )
+            })} 
+        </>   
     )
-
 }
 
 export default MyRoutines;

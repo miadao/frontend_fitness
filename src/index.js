@@ -34,7 +34,6 @@ const App =()=> {
             setToken(localStorage.getItem("token"))
             setUsername(localStorage.getItem("username"))
             setLoginSuccess(true)
-            setUsername("username")
         }
     }, [loginSuccess, username])
 
@@ -57,7 +56,8 @@ const App =()=> {
                 <Switch>
                     <Route exact path= "/home">
                         <Home
-                        
+                        token={token}
+                        loginSuccess={loginSuccess}
                         />
                     </Route>
 
@@ -112,6 +112,9 @@ const App =()=> {
                     <Route exact path= "/myroutines">
                         <MyRoutines
                             token={token}
+                            loginSuccess={loginSuccess}
+                            username={username}
+                            
                         />
                     </Route>
 
