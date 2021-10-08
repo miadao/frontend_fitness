@@ -1,12 +1,14 @@
 import { BASE_URL } from '../api';
 import { useHistory ,Link} from 'react-router-dom';
 import { useState } from 'react';
+import { Redirect } from 'react-router';
 
 const AddRoutines = ({token}) => {
     // const history = useHistory();
     const [nameString, setName] = useState('')
     const [goalString, setGoal] = useState('')
     const [isPublicBoolean, setIsPublic] = useState(true)
+    const [isAdded, setIsAdded] = useState(false)
 
     const handleSubmit = async (event) => {
         console.log("Testing Add Routines")
@@ -28,6 +30,7 @@ const AddRoutines = ({token}) => {
         .then(response => response.json())
         .then(result => {
             console.log(result);
+            setIsAdded(true)
             })
         .catch(console.error);
         // history.push("/routines")
@@ -53,7 +56,8 @@ const AddRoutines = ({token}) => {
 
             </form>
             <h2> <Link to="/routines"> View Routines </Link>  </h2>
-            
+            {isAdded ? <Redirect to="/routines"> </Redirect> : null}
+            {isAdded ? alert("Routine created successfully, we will re-direct you") : null}
 
         </div>)
     

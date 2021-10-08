@@ -31,10 +31,15 @@ li {
     font-size: 25px;;
 }
 
-.routines {
+.routines, .myroutines {
     border: 1px solid;
     margin: 2%;
     font-size: 15px;
+}
+.edit, .delete {
+    border: 3px solid;
+    display: flex;
+    flex-direction: row;
 }
 
 /* ACTIVITY COMPONENT CLASSES */

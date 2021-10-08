@@ -32,9 +32,11 @@ const App =()=> {
     useEffect (() => {
         if (localStorage.getItem("token")){
             setToken(localStorage.getItem("token"))
+            setUsername(localStorage.getItem("username"))
             setLoginSuccess(true)
+            setUsername("username")
         }
-    }, [loginSuccess])
+    }, [loginSuccess, username])
 
     // useEffect (() => {
     //     if (localStorage.clear("token")){
@@ -94,6 +96,7 @@ const App =()=> {
                             token={token}
                             loginSuccess={loginSuccess}
                             username={username}
+                            setUsername={setUsername}
                             
                         />
                     </Route>
