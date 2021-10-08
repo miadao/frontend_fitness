@@ -31,7 +31,7 @@ const MyRoutines = ({token, loginSuccess, username}) => {
             <h2 className="ToView"> {loginSuccess ?  <Link to="/addroutines"> Add Routines </Link> : "Please Log In to Edit Your Routines"} </h2>
             
             
-           {myroutines && myroutines.map(routine => {
+           {loginSuccess && myroutines.map(routine => {
                 return (
                     <div> 
                     Routine Id: {routine.id}
