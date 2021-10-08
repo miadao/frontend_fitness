@@ -57,7 +57,7 @@ const App =()=> {
 
                     <Route exact path= "/activities">
                         <Activities
-                        
+                            token={token}
                         />
                     </Route>
 
