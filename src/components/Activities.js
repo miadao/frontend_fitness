@@ -14,6 +14,7 @@ const Activities = () => {
     const [routinesToDisplay, setRoutinesToDisplay] = useState([])
     const [idToEdit, setIdToEdit] = useState('')
     const [nameToEdit, setNameToEdit] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
   
     
 
@@ -86,6 +87,15 @@ const Activities = () => {
             catch(console.error)
     }
 
+    function activityMatches(activity, text) {
+        if (activity.name.toLowerCase().includes(text.toLowerCase())) {
+            return true
+        }
+    }
+
+    const filteredActivities = activities.filter(activity => activityMatches(activity, searchTerm));
+    const activitiesToDisplay = searchTerm.length > 0 ? filteredActivities : activities;
+
 
     return ( <>
      { isEditing ? 
@@ -108,7 +118,11 @@ const Activities = () => {
                 <h1>Activities</h1>
                 <div className="activitycontainer">
                     <div className="mapcontainer">
-                        {activities.map(activity => {
+                    <div className="SearchEverything">
+                        <label className="SearchText">Search Posts</label>
+                        <input className="SearchInput" onChange={event => setSearchTerm(event.target.value)}></input>
+                    </div>
+                        {activitiesToDisplay.map(activity => {
                             return (
                                 <div className="activity" key={activity.id}>
                                     <div>Name: {activity.name}</div>
