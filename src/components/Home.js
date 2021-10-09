@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 
 
-const Home = ({token, username}) => {
+const Home = ({token, username, loginSuccess}) => {
  
   useEffect(() => {
     fetch(`${BASE_URL}/users/me`, {
@@ -21,7 +21,7 @@ const Home = ({token, username}) => {
   
 
   return (<div className= "home">
-    <h1>Hello {username}, welcome back!</h1>
+    <h1> {loginSuccess ? `Hello ${username}, welcome back!`: "Please Login to see your Homepage"} </h1>
     
   </div>)
 }
