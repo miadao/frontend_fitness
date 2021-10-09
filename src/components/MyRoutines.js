@@ -39,7 +39,7 @@ const MyRoutines = ({ token, loginSuccess }) => {
 
     useEffect(() => {
         const fetchActivities = async () => {
-            const resp = await fetch('http://fitnesstrac-kr.herokuapp.com/api/activities')
+            const resp = await fetch('https://fitnesstrac-kr.herokuapp.com/api/activities')
             const data = await resp.json()
             setActivities(data)
         }
