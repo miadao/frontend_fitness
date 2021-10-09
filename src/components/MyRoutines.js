@@ -165,7 +165,7 @@ const MyRoutines = ({ token, loginSuccess }) => {
                                 {addActivities ?
                                     <>
                                         <div className="SearchEverything">
-                                            <label className="SearchText">Search Posts</label>
+                                            <label className="SearchText">Search Activities</label>
                                             <input className="SearchInput" onChange={event => setSearchTerm(event.target.value)}></input>
                                         </div>
                                         <br></br>
@@ -176,7 +176,7 @@ const MyRoutines = ({ token, loginSuccess }) => {
                                                     <div>Name: {activity.name}</div>
                                                     <div className="activityDescription">Description: {activity.description}</div>
                                                     <button onClick={event => {
-                                                        setPickedActivities(true),
+                                                            setPickedActivities(true),
                                                             setAddActivities(false),
                                                             setActivityId(activity.id)
                                                     }}>Add</button>
