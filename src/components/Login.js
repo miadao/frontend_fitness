@@ -4,7 +4,6 @@ import { BASE_URL } from "../api";
 
 const Login = ({setUsername, loginSuccess, setLoginSuccess}) => {
 
-    //STATE PAIRS GO HERE
     const [usernameString, setUsernameString] = useState('')
     const [passwordString, setPasswordString] = useState('')
     const [token, setToken] = useState('')

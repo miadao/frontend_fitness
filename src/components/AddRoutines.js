@@ -1,17 +1,15 @@
 import { BASE_URL } from '../api';
-import { useHistory ,Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useState } from 'react';
 import { Redirect } from 'react-router';
 
 const AddRoutines = ({token}) => {
-    // const history = useHistory();
     const [nameString, setName] = useState('')
     const [goalString, setGoal] = useState('')
     const [isPublicBoolean, setIsPublic] = useState(true)
     const [isAdded, setIsAdded] = useState(false)
 
     const handleSubmit = async (event) => {
-        console.log("Testing Add Routines")
         event.preventDefault();
 
     try {
@@ -33,7 +31,6 @@ const AddRoutines = ({token}) => {
             setIsAdded(true)
             })
         .catch(console.error);
-        // history.push("/routines")
         } catch (err) {
             console.error(err)
         }
