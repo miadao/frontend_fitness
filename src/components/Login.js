@@ -23,15 +23,6 @@ const Login = ({username, setUsername, password, loginSuccess, setLoginSuccess})
         }).then(response => response.json())
             .then (result => {
                 console.log(result)
-<<<<<<< HEAD
-                if(username === usernameString && password === passwordString)
-                {
-                setLoginSuccess(true)
-                setToken(result.token)
-                setUsername(result.user.username)
-                } else {
-                    alert("Credentials Incorrect. Please re-enter and login.")
-=======
                 if(result.message==="you're logged in!"){
                     console.log(result)
                     setLoginSuccess(true)
@@ -43,7 +34,6 @@ const Login = ({username, setUsername, password, loginSuccess, setLoginSuccess})
                     console.log(result)
                     alert('Incorrect Credentials, try again')
                     setLoginSuccess(false)
->>>>>>> ce992071f674c1e9b36863a468d993df7e740378
                 }
                 
                 return result
