@@ -32,9 +32,10 @@ const App =()=> {
     useEffect (() => {
         if (localStorage.getItem("token")){
             setToken(localStorage.getItem("token"))
+            setUsername(localStorage.getItem("username"))
             setLoginSuccess(true)
         }
-    }, [loginSuccess])
+    }, [loginSuccess, username])
 
     // useEffect (() => {
     //     if (localStorage.clear("token")){
@@ -55,8 +56,9 @@ const App =()=> {
                 <Switch>
                     <Route exact path= "/home">
                         <Home
-                        setRoutines={setRoutines}
                         token={token}
+                        loginSuccess={loginSuccess}
+                        username={username}
                         />
                     </Route>
 
@@ -71,6 +73,7 @@ const App =()=> {
                             loginSuccess={loginSuccess}
                             setLoginSuccess={setLoginSuccess}
                             username={username}
+                            password={password}
                             setUsername={setUsername}
                             setToken={setToken}
                             token={token}
@@ -95,6 +98,7 @@ const App =()=> {
                             token={token}
                             loginSuccess={loginSuccess}
                             username={username}
+                            setUsername={setUsername}
                             
                         />
                     </Route>
@@ -110,6 +114,9 @@ const App =()=> {
                     <Route exact path= "/myroutines">
                         <MyRoutines
                             token={token}
+                            loginSuccess={loginSuccess}
+                            username={username}
+                            
                         />
                     </Route>
 

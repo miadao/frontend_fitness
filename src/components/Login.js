@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { BASE_URL } from "../api";
 
-const Login = ({username, password, loginSuccess, setLoginSuccess}) => {
+const Login = ({username, setUsername, password, loginSuccess, setLoginSuccess}) => {
 
     //STATE PAIRS GO HERE
     const [usernameString, setUsernameString] = useState('')
@@ -23,14 +23,19 @@ const Login = ({username, password, loginSuccess, setLoginSuccess}) => {
         }).then(response => response.json())
             .then (result => {
                 console.log(result)
-                if(username && password)
-                {
-                setLoginSuccess(true)
-                setToken(result.token)
+                if(result.message==="you're logged in!"){
+                    console.log(result)
+                    setLoginSuccess(true)
+                    setToken(result.token)
+                    setUsername(result.user.username)
+                    localStorage.setItem('token', result.token)
+                    localStorage.setItem('username', result.user.username)
+                } else {
+                    console.log(result)
+                    alert('Incorrect Credentials, try again')
+                    setLoginSuccess(false)
                 }
                 
-                localStorage.setItem('token', result.token)
-                // localStorage.setItem('username', result.username)
                 return result
             }).catch(console.error)
     }
@@ -59,19 +64,22 @@ const Login = ({username, password, loginSuccess, setLoginSuccess}) => {
                 onChange={ event => setPasswordString(event.target.value) }>
             </input>
 
-            {loginSuccess ? <button className="logoutButton" onClick={() => logoutUser()}>
-            Logout</button> :  <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)} >
-            Login </button> }
+            {loginSuccess ? <button className="logoutButton" onClick={() => logoutUser()}> Logout</button> 
+            :  <button className="loginButton" onClick={() => loginUser(usernameString, passwordString)} > Login </button> }
+
             
-            {loginSuccess ? <Redirect to="/home"/> && alert (`Welcome ${usernameString}!`) : null }
+            
+            {loginSuccess ? <Redirect to="/home"/> : null }
+            {loginSuccess ? alert (`Welcome ${usernameString}!`) : null}
+            
             
 
             <h2> <Link className="Register" to="/register">Don't have an account? Sign Up!</Link></h2>
-            <h3> <Link className="TESTING" to="/routines">Testing Routines</Link></h3>
+            
 
         </div>
 
-        // {loginSuccess ? <> Well Done! </> : <> Please Log In</>  }
+       
     )
 }
 export default Login;

@@ -1,4 +1,5 @@
 import { BASE_URL  } from "../api";
+import { Redirect } from "react-router";
 
 const DeleteRoutines = ({token, routineId}) => {
 
@@ -14,7 +15,9 @@ const DeleteRoutines = ({token, routineId}) => {
                 .then(result => {
                 console.log(result)
                 alert("Routine Deleted!")
+                window.location.reload(true);
                 })
+                
                 .catch(console.error);
         }
         return (

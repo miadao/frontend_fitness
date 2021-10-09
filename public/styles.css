@@ -31,15 +31,46 @@ li {
     font-size: 25px;;
 }
 
-.routines {
+.routines, .myroutines {
     border: 1px solid;
     margin: 2%;
     font-size: 15px;
 }
+.edit, .delete {
+    border: 3px solid;
+    display: flex;
+    flex-direction: row;
+}
+.toViewAllRoutines, .toViewMyRoutines {
+    text-align: center;
+    font: red 30px;
+}
+
+button {
+    border: 3px solid burlywood;
+    margin: 2%;
+}
+
+/* ACTIVITY COMPONENT CLASSES */
+
 .activityDescription {
     padding-bottom: 10px;
 }
 
 .routinegoal{
     padding-bottom: 10px;
+}
+
+.routine{
+    padding-bottom: 10px;
+}
+
+.closebutton{
+    margin-bottom: 20px;
+}
+
+.activitycontainer{
+    display: flex;
+    flex-direction: row;
+    
 }

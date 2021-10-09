@@ -21,14 +21,28 @@ const Register = () => {
                 // }
             })
         })
-        console.log(`${BASE_URL}/users/register`)
-        const data = await response.json();
-        console.log(data)
-        setUsername('')
-        setPassword('')
-        setUserRegistered(true)
-    }
+        .then(response => response.json())
+        .then (result => {
+            console.log(result)
+            if(result.message === "you're singed up!"){
+                console.log(result)
+                setUserRegistered(true)
+                setToken(result.token)
+                setUsername(result.user.username)
+                localStorage.setItem('token', result.token)
+                localStorage.setItem('username', result.user.username)
+            } else {
+                console.log(result)
+                alert('A user by that username already exists. Please login or re-register with different credentials.')
+                window.location.reload(true)
+                setLoginSuccess(false)
+            }
+            
+            return result
+        }).catch(console.error)
+}
 
+    
     const confirmPassword = () => {
         if (password === ConfirmPassword && password.length >= 8) {
             Register()
