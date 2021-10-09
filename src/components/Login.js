@@ -43,6 +43,7 @@ const Login = ({username, setUsername, password, loginSuccess, setLoginSuccess})
     
     function logoutUser(){
         localStorage.removeItem("token")
+        localStorage.removeItem("username")
         setLoginSuccess(false)
     }
 
