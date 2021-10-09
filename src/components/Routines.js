@@ -28,8 +28,10 @@ const Routines = ({token, loginSuccess}) => {
         console.log(username)
         
 
-    const filterRoutines = (text) => {
+    const filterRoutines = (routine,text) => {
+        if (routine.name.toLowerCase().includes(text.toLowerCase())) {
           return true
+        }
       }
 
     const filteredRoutines = routines.filter (routine => filterRoutines(routine, filter))
@@ -58,7 +60,7 @@ const Routines = ({token, loginSuccess}) => {
 
             
 
-            {routineToDisplay && routines.map(routine => {
+            {routines && routineToDisplay.map(routine => {
                 return (
                     <div className="routines" key={routine.id}>
                         <section> 
