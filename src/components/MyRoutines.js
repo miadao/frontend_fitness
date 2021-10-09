@@ -60,6 +60,7 @@ const MyRoutines = ({ token, loginSuccess }) => {
             })
         }).then(response => response.json())
             .then(result => {
+                window.location.reload(true);
             }).catch(console.error)
     }
 
@@ -76,6 +77,7 @@ const MyRoutines = ({ token, loginSuccess }) => {
             })
         }).then(response => response.json())
             .then(result => {
+                window.location.reload(true);
             }).catch(console.error)
     }
 
@@ -88,6 +90,7 @@ const MyRoutines = ({ token, loginSuccess }) => {
             }
         }).then(response => response.json())
             .then(result => {
+                window.location.reload(true);
             }).catch(console.error)
     }
 

@@ -22,7 +22,7 @@ const DeleteRoutines = ({token, routineId}) => {
         }
         return (
             <form onSubmit={handleDelete}>
-                <div ClassName="Delete">
+                <div className="Delete">
                     <button type="submit"> Delete</button>
                 </div>
             </form>
