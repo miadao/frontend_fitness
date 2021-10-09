@@ -51,10 +51,10 @@ const Routines = ({token, loginSuccess}) => {
                 <button type="click" onclick={filterRoutines}> Filter Routines </button>
             </h1>
 
-            <h2 className="All Routines"> View All Routines below...</h2>
+            <h2 className="allRoutines"> View All Routines below...</h2>
             <br></br>
-            <h3 className="ToView"> {loginSuccess ? null : "Please Log In to Edit Routines"} </h3>
-            <h4 className="Add Routines"> {loginSuccess ? <Link to="/addroutines"> Add Routines </Link> : null} </h4>
+            <h3 className="toViewAllRoutines"> {loginSuccess ? null : "Please Log In to Edit Routines"} </h3>
+            <h4 className="AddRoutines"> {loginSuccess ? <Link to="/addroutines"> Add Routines </Link> : null} </h4>
 
             
 
@@ -78,7 +78,7 @@ const Routines = ({token, loginSuccess}) => {
                                     return (<div key={activity.routineActivityId}>{activity.name}</div>)                                  
                                 })}
                             {loginSuccess && routine.creatorName === username? <DeleteRoutines routineId={routine.id} token={token}/> : null}
-                            {loginSuccess && routine.creatorName === username? <EditRoutines/> : null}
+                            {loginSuccess && routine.creatorName === username? <EditRoutines routineId={routine.id} token={token}/> : null}
                             </h1>
                         </section>
                                            
