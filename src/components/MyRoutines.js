@@ -8,32 +8,31 @@ const MyRoutines = ({token, loginSuccess, username}) => {
 
     const [myroutines, setMyRoutines] = useState([])
     
-    
-            fetch(`${BASE_URL}/users/${username}/routines`, {
+    useEffect(() => {
+        const fetchMyRoutines = async () => {
+            const resp = await fetch(`${BASE_URL}/users/${username}/routines`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
-                  }
-            })
-            .then(response => response.json())
-            .then(result => {
-                console.log(result)
-                setMyRoutines(result)
-            })
-            .catch(console.error);
-                
-
+                    }
+            }) 
+            const data = await resp.json()
+            setMyRoutines(data)
+            console.log(data)
+        }
+        fetchMyRoutines()
+    },[])
+    
         
-
     return (
         <> 
             <h1 className="YourRoutines"> Your Routines</h1> 
-            <h2 className="ToView"> {loginSuccess ?  <Link to="/addroutines"> Add Routines </Link> : "Please Log In to Edit Your Routines"} </h2>
+            <h2 className="toViewMyRoutines"> {loginSuccess ?  <Link to="/addroutines"> Add Routines </Link> : "Please Login to create and edit your routines"} </h2>
             
-            
-           {loginSuccess && myroutines.map(routine => {
+            <h3>
+           {loginSuccess ? myroutines.map(routine => {
                 return (
-                    <div> 
+                    <div className="myroutines"> 
                     Routine Id: {routine.id}
                     <br></br>
                     Creator Name: {routine.creatorName}
@@ -49,11 +48,11 @@ const MyRoutines = ({token, loginSuccess, username}) => {
                     Activities: {routine.activities.map(activity => {
                         return (<div key={activity.routineActivityId}>{activity.name}</div>)                                  
                     })}
-                    { <DeleteRoutines routineId={routine.id} token={token}/>}
-                    { <EditRoutines/>}
+                    {<DeleteRoutines routineId={routine.id} token={token}/>}
+                    { <EditRoutines routineId={routine.id} token={token}/> }
                 </div>
                 )
-            })} 
+            }): null} </h3>
         </>   
     )
 }

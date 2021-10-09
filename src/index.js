@@ -72,6 +72,7 @@ const App =()=> {
                             loginSuccess={loginSuccess}
                             setLoginSuccess={setLoginSuccess}
                             username={username}
+                            password={password}
                             setUsername={setUsername}
                             setToken={setToken}
                             token={token}
