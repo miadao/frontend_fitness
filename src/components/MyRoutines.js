@@ -5,6 +5,7 @@ import EditRoutines from "./EditRoutine";
 import DeleteRoutines from "./DeleteRoutines";
 
 const MyRoutines = ({token, loginSuccess, username}) => {
+    
 
     const [myroutines, setMyRoutines] = useState([])
     const [activities, setActivities] = useState([])
@@ -18,13 +19,17 @@ const MyRoutines = ({token, loginSuccess, username}) => {
     const [pickedRActivity, setPickedRActivity] = useState(false)
     const [editRActivity, setEditRActivity] = useState(false)
     const [raName, setRAname] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
     
     useEffect(() => {
+        const usertoken = localStorage.getItem("token")
+        const userusername = localStorage.getItem("username")
+        
         const fetchMyRoutines = async () => {
-            const resp = await fetch(`${BASE_URL}/users/${username}/routines`, {
+            const resp = await fetch(`${BASE_URL}/users/${userusername}/routines`, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
+                    'Authorization': 'Bearer ' + usertoken
                     }
             }) 
             const data = await resp.json()
@@ -91,6 +96,15 @@ const MyRoutines = ({token, loginSuccess, username}) => {
             console.log(result);
         }).catch(console.error)
     }
+
+    function activityMatches(activity, text) {
+        if (activity.name.toLowerCase().includes(text.toLowerCase())) {
+            return true
+        }
+    }
+
+    const filteredActivities = activities.filter(activity => activityMatches(activity, searchTerm));
+    const activitiesToDisplay = searchTerm.length > 0 ? filteredActivities : activities;
         
     // console.log(routineId)
     if(loginSuccess){
@@ -101,7 +115,7 @@ const MyRoutines = ({token, loginSuccess, username}) => {
                 <h2 className="toViewMyRoutines"> {loginSuccess ?  <Link to="/addroutines"> Add Routines </Link> : "Please Login to create and edit your routines"} </h2>
                 
                 <h3>
-            {!pickedRActivity ? myroutines.map(routine => {
+            {!pickedRActivity ? myroutines ?  myroutines.map(routine => {
                 
                     return (
                         <div className="myroutines" key={routine.id}> 
@@ -156,20 +170,26 @@ const MyRoutines = ({token, loginSuccess, username}) => {
                         
                         {addActivities ? 
                             <>
-                                {activities.map(activity => {
-                                    return (
-                                        <div className="activity" key={activity.id}>
-                                            <div>Name: {activity.name}</div>
-                                            <div className="activityDescription">Description: {activity.description}</div>                                       
-                                            <button onClick={event => {
-                                                setPickedActivities(true), 
-                                                setAddActivities(false),
-                                                setActivityId(activity.id)
-                                            }}>Add</button>      
+                                <div className="SearchEverything">
+                                    <label className="SearchText">Search Posts</label>
+                                    <input className="SearchInput" onChange={event => setSearchTerm(event.target.value)}></input>
+                                </div>
+                                <br></br>
+                                <br></br>
+                                    {activitiesToDisplay.map(activity => {
+                                        return (
+                                            <div className="activity" key={activity.id}>
+                                                <div>Name: {activity.name}</div>
+                                                <div className="activityDescription">Description: {activity.description}</div>                                       
+                                                <button onClick={event => {
+                                                    setPickedActivities(true), 
+                                                    setAddActivities(false),
+                                                    setActivityId(activity.id)
+                                                }}>Add</button>      
 
-                                        </div> 
-                                    )  
-                                })}
+                                            </div> 
+                                        )  
+                                    })}
                             </>
 
                         : null}
@@ -244,7 +264,7 @@ const MyRoutines = ({token, loginSuccess, username}) => {
                                                 setPickedRActivity(false)
                                             }}>Delete Activity</button></> : null}
                     </>
-                } </h3>
+                : null} </h3>
             </>   
         
     )
