@@ -24,8 +24,9 @@ const Register = () => {
         .then(response => response.json())
         .then (result => {
             console.log(result)
-            if(result.message === "you're singed up!"){
-                console.log(result)
+            if(result.message==="you're signed up!"){
+                console.log("234")
+                alert("You are registered! We will re-direct you, please log in!");
                 setUserRegistered(true)
                 setToken(result.token)
                 setUsername(result.user.username)
@@ -36,9 +37,9 @@ const Register = () => {
                 alert('A user by that username already exists. Please login or re-register with different credentials.')
                 window.location.reload(true)
                 setLoginSuccess(false)
-            }
-            
+            } 
             return result
+            
         }).catch(console.error)
 }
 
@@ -51,12 +52,12 @@ const Register = () => {
         }
     }
 
-    if (UserRegistered){
-        return (
-            alert ("You are registered! We will re-direct you, please log in!"),
-            <Redirect to ="/login"/>
-        )
-    }
+    // if (UserRegistered){
+    //     return (
+    //         alert ("You are registered! We will re-direct you, please log in!"),
+    //         <Redirect to ="/login"/>
+    //     )
+    // }
 
     return (
         <div> 
@@ -96,6 +97,12 @@ const Register = () => {
                         type="submit"
                         name="event"
                     >Register User</button>
+
+                    {/* { UserRegistered ?
+                    alert ("You are registered! We will re-direct you, please log in!") : null } */}
+
+                    {UserRegistered ? <Redirect to ="/login"/> : null}
+                )       
                     
                 </fieldset>
             </form>

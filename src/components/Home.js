@@ -5,8 +5,6 @@ import React, { useEffect, useState } from 'react';
 
 const Home = ({token, username}) => {
  
- 
-
   useEffect(() => {
     fetch(`${BASE_URL}/users/me`, {
       method: "GET",
@@ -23,7 +21,8 @@ const Home = ({token, username}) => {
   
 
   return (<div className= "home">
-    <h1>Hello {username}</h1>
+    <h1>Hello {username}, welcome back!</h1>
+    
   </div>)
 }
 export default Home;

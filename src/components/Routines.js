@@ -58,7 +58,7 @@ const Routines = ({token, loginSuccess}) => {
 
             
 
-            {routines.map(routine => {
+            {routineToDisplay && routines.map(routine => {
                 return (
                     <div className="routines" key={routine.id}>
                         <section> 
