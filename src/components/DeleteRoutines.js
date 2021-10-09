@@ -1,5 +1,4 @@
 import { BASE_URL  } from "../api";
-import { Redirect } from "react-router";
 
 const DeleteRoutines = ({token, routineId}) => {
 
@@ -22,7 +21,7 @@ const DeleteRoutines = ({token, routineId}) => {
         }
         return (
             <form onSubmit={handleDelete}>
-                <div className="Delete">
+                <div ClassName="Delete">
                     <button type="submit"> Delete</button>
                 </div>
             </form>

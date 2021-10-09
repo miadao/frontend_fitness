@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import EditRoutines from "./EditRoutine";
 import DeleteRoutines from "./DeleteRoutines";
-
 const MyRoutines = ({ token, loginSuccess }) => {
-
     const [myroutines, setMyRoutines] = useState([])
     const [activities, setActivities] = useState([])
     const [activityId, setActivityId] = useState('')
@@ -19,11 +17,9 @@ const MyRoutines = ({ token, loginSuccess }) => {
     const [editRActivity, setEditRActivity] = useState(false)
     const [raName, setRAname] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
-
     useEffect(() => {
         const usertoken = localStorage.getItem("token")
         const userusername = localStorage.getItem("username")
-
         const fetchMyRoutines = async () => {
             const resp = await fetch(`${BASE_URL}/users/${userusername}/routines`, {
                 headers: {
@@ -36,7 +32,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
         }
         fetchMyRoutines()
     }, [])
-
     useEffect(() => {
         const fetchActivities = async () => {
             const resp = await fetch('https://fitnesstrac-kr.herokuapp.com/api/activities')
@@ -45,7 +40,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
         }
         fetchActivities()
     }, [])
-
     function addActivityToRoutine(activityId, count, duration) {
         fetch(`${BASE_URL}/routines/${routineId}/activities`, {
             method: "POST",
@@ -64,7 +58,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
                 console.log(result)
             }).catch(console.error)
     }
-
     function editRoutineActivity(count, duration) {
         fetch(`${BASE_URL}/routine_activities/${routineActivityId}`, {
             method: 'PATCH',
@@ -81,7 +74,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
                 window.location.reload(true);
             }).catch(console.error)
     }
-
     function deleteRoutineActivity() {
         fetch(`${BASE_URL}/routine_activities/${routineActivityId}`, {
             method: 'DELETE',
@@ -94,26 +86,20 @@ const MyRoutines = ({ token, loginSuccess }) => {
                 window.location.reload(true);
             }).catch(console.error)
     }
-
     function activityMatches(activity, text) {
         if (activity.name.toLowerCase().includes(text.toLowerCase())) {
             return true
         }
     }
-
     const filteredActivities = activities.filter(activity => activityMatches(activity, searchTerm));
     const activitiesToDisplay = searchTerm.length > 0 ? filteredActivities : activities;
-
     if (loginSuccess) {
         return (
-
             <>
                 <h1 className="YourRoutines"> Your Routines</h1>
                 <h2 className="toViewMyRoutines"> {loginSuccess ? <Link to="/addroutines"> Add Routines </Link> : "Please Login to create and edit your routines"} </h2>
-
                 <h3>
                     {!pickedRActivity ? myroutines.map(routine => {
-
                         return (
                             <div className="myroutines" key={routine.id}>
                                 Routine Id: {routine.id}
@@ -145,8 +131,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
                                                 setPickedRActivity(true)
                                                 setRAname(activity.name)
                                             }}>Edit or Delete this Activity!</button> </> : null}
-
-
                                         <br></br>
                                         <br></br>
                                     </div>)
@@ -158,11 +142,8 @@ const MyRoutines = ({ token, loginSuccess }) => {
                                 }}>Click Here to Add Activities</button>
                                 {editRActivity ? <><button onClick={event => { setEditRActivity(false) }}>Cancel</button></> : null}
                                 {addActivities ? <><button onClick={function () { setAddActivities(false) }}>Cancel</button></> : null}
-
                                 {<DeleteRoutines routineId={routine.id} token={token} />}
                                 {pickedActivities || addActivities ? null : <EditRoutines routineId={routine.id} token={token} />}
-
-
                                 {addActivities ?
                                     <>
                                         <div className="SearchEverything">
@@ -185,7 +166,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
                                             )
                                         })}
                                     </>
-
                                     : null}
                                 {pickedActivities ?
                                     <>
@@ -198,7 +178,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
                                                 value={count}
                                                 onChange={event => setCount(event.target.value)}
                                             />
-
                                             <label>Duration: </label>
                                             <input
                                                 id="duration"
@@ -220,7 +199,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
                             </div>
                         )
                     }) :
-
                         <>
                             {<h1>Edit Activity: {raName} </h1>}
                             <label>Count: </label>
@@ -231,7 +209,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
                                 value={count}
                                 onChange={event => { setCount(event.target.value) }}
                             />
-
                             <label>Duration: </label>
                             <input
                                 id="duration"
@@ -242,7 +219,6 @@ const MyRoutines = ({ token, loginSuccess }) => {
                             />
                             <button onClick={event => { editRoutineActivity(count, duration), setPickedRActivity(false) }}>Send</button>
                             <button onClick={event => { setPickedRActivity(false) }}>Cancel</button>
-
                             <br></br>
                             <br></br>
                             {editRActivity ? <><button
@@ -253,11 +229,9 @@ const MyRoutines = ({ token, loginSuccess }) => {
                         </>
                     } </h3>
             </>
-
         )
     } else {
         return <>Please Login to View Your Routines</>
     }
 }
-
 export default MyRoutines;

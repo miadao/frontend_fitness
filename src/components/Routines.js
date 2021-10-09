@@ -4,10 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import EditRoutines from "./EditRoutine";
 import DeleteRoutines from "./DeleteRoutines";
 
-
 const Routines = ({token, loginSuccess}) => {
 
-    
     const [filter, setFilter] = useState('')
     const [routines, setRoutines] = useState([])
     const [username, setUsername] = useState('')
@@ -24,10 +22,8 @@ const Routines = ({token, loginSuccess}) => {
         fetchRoutines()
         
     }, [username])
-
         console.log(username)
         
-
     const filterRoutines = (routine,text) => {
         if (routine.name.toLowerCase().includes(text.toLowerCase())) {
           return true
@@ -36,8 +32,6 @@ const Routines = ({token, loginSuccess}) => {
 
     const filteredRoutines = routines.filter (routine => filterRoutines(routine, filter))
     const routineToDisplay = filter.length > 0 ? filteredRoutines : routines; 
-
-    
 
     return (
         <>
@@ -57,8 +51,6 @@ const Routines = ({token, loginSuccess}) => {
             <br></br>
             <h3 className="toViewAllRoutines"> {loginSuccess ? null : "Please Log In to Edit Routines"} </h3>
             <h4 className="AddRoutines"> {loginSuccess ? <Link to="/addroutines"> Add Routines </Link> : null} </h4>
-
-            
 
             {routines && routineToDisplay.map(routine => {
                 return (

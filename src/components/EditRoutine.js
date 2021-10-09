@@ -8,7 +8,6 @@ const EditRoutines = ({routineId, token}) => {
     const [isEditted, setIsEditted] = useState(false)
 
     const handleSubmit = async (event) => {
-        console.log("Testing Edit Routines")
         event.preventDefault();
 
         try {
@@ -27,6 +26,7 @@ const EditRoutines = ({routineId, token}) => {
             .then(result => {
                 console.log(result)
                 setIsEditted(true)
+                window.location.reload(true) 
             })
             .catch(console.error);
         
@@ -52,7 +52,7 @@ const EditRoutines = ({routineId, token}) => {
                     <button type="submit"> Finish Edit Routine </button>
                 </form>
                 {isEditted ? alert ("You've successfully edit a routine!") : null}
-                {isEditted ?  window.location.reload(true) : null}
+                {/* {isEditted ?  window.location.reload(true) : null} */}
         </div>
     )
 }
