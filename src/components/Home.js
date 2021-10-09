@@ -3,28 +3,27 @@ import React, { useEffect, useState } from 'react';
 
 
 
-const Home = (props) => {
-  const { BASE_URL, token, username } = props;
-  const [routines, setRoutines] = useState([]);
+const Home = ({token, username}) => {
+ 
+ 
 
   useEffect(() => {
-    fetch(`${BASE_URL}/Home`, {
+    fetch(`${BASE_URL}/users/me`, {
       method: "GET",
-      headers: {
+      headers:{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token
       }
+    }).then(response => response.json())
+    .then(result => {
+      console.log(result);
     })
-    .then(res => res.json())
-    .then((result) => {
-      const reponse =result.data;
-      setRoutines(reponse.posts)
-    })
-    .catch(err => console.error(err))
-  }, []);
+    .catch(console.error);
+  })
+  
 
   return (<div className= "home">
     <h1>Hello {username}</h1>
   </div>)
-
+}
 export default Home;
