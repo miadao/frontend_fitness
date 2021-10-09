@@ -60,6 +60,7 @@ const Activities = () => {
         }).then(response => response.json())
             .then(result => {
                 console.log(result)
+                window.location.reload(true)
             })
     }
 

@@ -61,6 +61,7 @@ const MyRoutines = ({ token, loginSuccess }) => {
         }).then(response => response.json())
             .then(result => {
                 window.location.reload(true);
+                console.log(result)
             }).catch(console.error)
     }
 
