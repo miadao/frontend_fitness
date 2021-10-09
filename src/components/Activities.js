@@ -118,7 +118,7 @@ const Activities = () => {
                 <div className="activitycontainer">
                     <div className="mapcontainer">
                     <div className="SearchEverything">
-                        <label className="SearchText">Search Posts</label>
+                        <label className="SearchText">Search Activities: </label>
                         <input className="SearchInput" onChange={event => setSearchTerm(event.target.value)}></input>
                     </div>
                         {activitiesToDisplay.map(activity => {
