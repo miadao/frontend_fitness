@@ -45,7 +45,7 @@ const Routines = ({token, loginSuccess}) => {
                 <input
                     id="filter"
                     type="text"
-                    placeholder="just do ctrl + f"
+                    placeholder="search routine by name"
                     value={filter}
                     onChange={(event)=> setFilter(event.target.value)}
                 >
