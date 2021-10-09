@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { BASE_URL } from "../api";
 
-const Login = ({username, setUsername, password, loginSuccess, setLoginSuccess}) => {
+const Login = ({setUsername, loginSuccess, setLoginSuccess}) => {
 
     //STATE PAIRS GO HERE
     const [usernameString, setUsernameString] = useState('')

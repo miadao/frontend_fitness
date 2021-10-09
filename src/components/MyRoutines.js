@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import EditRoutines from "./EditRoutine";
 import DeleteRoutines from "./DeleteRoutines";
 
-const MyRoutines = ({token, loginSuccess, username}) => {
+const MyRoutines = ({token, loginSuccess}) => {
     
 
     const [myroutines, setMyRoutines] = useState([])
@@ -106,7 +106,6 @@ const MyRoutines = ({token, loginSuccess, username}) => {
     const filteredActivities = activities.filter(activity => activityMatches(activity, searchTerm));
     const activitiesToDisplay = searchTerm.length > 0 ? filteredActivities : activities;
         
-    // console.log(routineId)
     if(loginSuccess){
     return (
             

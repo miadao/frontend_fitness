@@ -1,6 +1,6 @@
 import { BASE_URL } from "../api";
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const Register = () => {
     const [username, setUsername] = useState('')
@@ -9,23 +9,20 @@ const Register = () => {
     const [UserRegistered, setUserRegistered] = useState(false)
 
     const Register = async () => {
-        const response = await fetch (`${BASE_URL}/users/register`, {
+        fetch (`${BASE_URL}/users/register`, {
             method: 'POST',
             headers: {
                 'Content-Type':'application/json'
             },
             body: JSON.stringify({
-                // user:{
                     "username": username,
                     "password": password,
-                // }
             })
         })
         .then(response => response.json())
         .then (result => {
             console.log(result)
             if(result.message==="you're signed up!"){
-                console.log("234")
                 alert("You are registered! We will re-direct you, please log in!");
                 setUserRegistered(true)
                 setToken(result.token)
@@ -51,13 +48,6 @@ const Register = () => {
             alert ("Password must be 8 characters or longer. Please try again.")
         }
     }
-
-    // if (UserRegistered){
-    //     return (
-    //         alert ("You are registered! We will re-direct you, please log in!"),
-    //         <Redirect to ="/login"/>
-    //     )
-    // }
 
     return (
         <div> 
@@ -91,15 +81,10 @@ const Register = () => {
                             value={ConfirmPassword}
                             onChange={(event) => setConfirmPassword(event.target.value)}
                         />
-
-                    {/* <br> </br> */}
                     <button
                         type="submit"
                         name="event"
                     >Register User</button>
-
-                    {/* { UserRegistered ?
-                    alert ("You are registered! We will re-direct you, please log in!") : null } */}
 
                     {UserRegistered ? <Redirect to ="/login"/> : null}
                 )       

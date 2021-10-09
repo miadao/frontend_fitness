@@ -16,8 +16,6 @@ MyRoutines,
 Header
 } from './components';
 
-import { BASE_URL } from './api';
-
 const App =()=> {
     
     const [loginSuccess, setLoginSuccess] = useState(false);
@@ -25,9 +23,6 @@ const App =()=> {
     const [password, setPassword] = useState('');
     const [ConfirmPassword, setConfirmPassword] = useState(false);
     const [token, setToken] = useState('');
-    
-    
-   
 
     useEffect (() => {
         if (localStorage.getItem("token")){
@@ -36,13 +31,6 @@ const App =()=> {
             setLoginSuccess(true)
         }
     }, [loginSuccess, username])
-
-    // useEffect (() => {
-    //     if (localStorage.clear("token")){
-    //         setToken(localStorage.clear("token"))
-    //         setLogoutUser(true)
-    //     }
-    // }, [logoutUser])
 
     return <div className="app">
         
@@ -135,7 +123,6 @@ const App =()=> {
             </div>
         </Router>
     </div>
-
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
