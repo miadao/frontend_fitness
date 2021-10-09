@@ -58,6 +58,7 @@ const App =()=> {
                         <Home
                         token={token}
                         loginSuccess={loginSuccess}
+                        username={username}
                         />
                     </Route>
 
