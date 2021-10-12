@@ -1,7 +1,5 @@
-# frontend_fitness
+Project: Fitness Tracker Frontend
 
-Welcome to our fitness tracker. 
- 
-Team members: Mia, Sean, Michael, and captain Marvel.
+Team members: Mia, Sean, Michael.
 
 Link to our website is: https://gifted-wright-fdaa42.netlify.app/login
